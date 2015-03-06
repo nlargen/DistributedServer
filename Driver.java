@@ -23,6 +23,7 @@ public class Driver {
 			{
 				rt.addClient(connection); 
 			}
+			System.out.println("connected!");
 		
 			
 		}

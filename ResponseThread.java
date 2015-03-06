@@ -19,7 +19,8 @@ public class ResponseThread extends Thread
 		this.s2 = null; 
 	}
 	public void run()
-	{
+	{// wait for second connection
+		
 		while(this.s2 == null)
 		{
 			System.out.println("Waiting for the second connection"); 
@@ -37,8 +38,10 @@ public class ResponseThread extends Thread
 			while(true)
 			{
 			soutput.println("Your turn: ");
-			s2output.println(sinput.nextLine());
+			s2output.println("From s:" + sinput.nextLine());
+			s2output.println("Your turn");
 			soutput.println(s2input.nextLine());
+			s2output.println("From s2:" + s2input.nextLine());
 			}
 		} 
 		catch(Exception e)
