@@ -19,13 +19,11 @@ public class ResponseThread extends Thread
 		try
 		{
 			Scanner input = new Scanner(this.s.getInputStream());
-			PrintWriter output = new PrintWriter(this.s.getOutputStream());
+			PrintWriter output = new PrintWriter(this.s.getOutputStream(), true);
 			while(true)
 			{
-			
 			String req = input.nextLine();
 			output.println(req);
-			System.out.println(req);
 			}
 		} 
 		catch(Exception e)
