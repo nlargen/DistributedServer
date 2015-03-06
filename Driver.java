@@ -9,14 +9,22 @@ public class Driver {
 		//Just added this line
 		ServerSocket ss = new ServerSocket(1234);
 		int count = 0;
-		
-		while(true)
+		ResponseThread rt = null; 
+		for(int i = 0; i < 2; i++)
 		{
 			System.out.println("Waiting...");
 			Socket connection = ss.accept();
-			ResponseThread rt = new ResponseThread(connection);
-			System.out.println("Connected!");
+			if(rt == null)
+			{
+			 rt = new ResponseThread(connection);
 			rt.start();
+			}
+			else 
+			{
+				rt.addClient(connection); 
+			}
+		
+			
 		}
 
 	}

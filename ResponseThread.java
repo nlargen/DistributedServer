@@ -7,23 +7,38 @@ public class ResponseThread extends Thread
 
 {
 	private Socket s;
-	
+	private Socket s2; 
 
 	public ResponseThread(Socket s)
 	{
 		this.s = s;
 	}
-	
+	public void addClient(Socket s)
+	{
+		this.s2 = s; 
+		this.s2 = null; 
+	}
 	public void run()
 	{
+		while(this.s2 == null)
+		{
+			System.out.println("Waiting for the second connection"); 
+			
+		}
 		try
 		{
-			Scanner input = new Scanner(this.s.getInputStream());
-			PrintWriter output = new PrintWriter(this.s.getOutputStream(), true);
+			Scanner sinput = new Scanner(this.s.getInputStream());
+			Scanner s2input = new Scanner(this.s2.getInputStream()); 
+			PrintWriter soutput = new PrintWriter(this.s.getOutputStream(), true);
+			PrintWriter s2output = new PrintWriter(this.s2.getOutputStream(), true);
+			soutput.println("Connected");
+			s2output.println("Connected");
+			
 			while(true)
 			{
-			String req = input.nextLine();
-			output.println(req);
+			soutput.println("Your turn: ");
+			s2output.println(sinput.nextLine());
+			soutput.println(s2input.nextLine());
 			}
 		} 
 		catch(Exception e)
